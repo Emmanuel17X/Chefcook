@@ -25,6 +25,7 @@ COPY . .
 
 # Installer les dépendances PHP
 RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN php artisan storage:link
 
 # Installer les dépendances JS et compiler Vite
 RUN npm install
