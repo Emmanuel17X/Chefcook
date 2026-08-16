@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $admins = User::count() < 2
+        $admins = User::count() < 4
             ? collect([
                 User::create([
                     'id' => '1',
@@ -28,7 +28,21 @@ class AdminSeeder extends Seeder
                     'email' => 'isadorafer@gmail.com',
                     'password' => 'ABC123(isa)',
                     'id_role' => '2'
+                ]),
+                User::create([
+                    'id' => '3',
+                    'username' => 'SANTA Mario',
+                    'email' => 's@gmail.com',
+                    'password' => 'Santa228',
+                    'id_role' => '1'
+                ]),
+                User::create([
+                    'id' => '4',
+                    'username' => 'Thomas20',
+                    'email' => 'thomas20@gmail.com',
+                    'password' => 'Thomas20',
+                    'id_role' => '1'
                 ])
-            ]):User::take(2)->get();
+            ]):User::take(4)->get();
     }
 }
