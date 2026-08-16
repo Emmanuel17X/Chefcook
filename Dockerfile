@@ -32,6 +32,7 @@ RUN npm run build
 
 # Permissions Laravel
 RUN chown -R www-data:www-data storage bootstrap/cache
+RUN setcap -r /usr/local/bin/frankenphp
 
 # Port utilisé par Render
 EXPOSE 10000
