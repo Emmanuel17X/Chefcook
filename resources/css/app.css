@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@config "../../tailwind.config.js";
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#on{
+    display: block;
+}
+
+#off{
+    display: none;
+}
