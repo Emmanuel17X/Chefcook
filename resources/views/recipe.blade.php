@@ -48,7 +48,7 @@
         </div>
         <div class="flex flex-col gap-5 w-1/2"><!-- Troisième Div -->
             <h1 class="text-2xl">Ingrédients</h1>
-            <p class="text-xl">Pour X personne</p>
+            <p class="text-xl">Pour <span id="people">1</span> personne</p>
             <div class="flex justify-evenly w-50">
                 <button class="rounded-full size-8 border-2" id="more" type="button">+</button>
                 <p id="quantite" class="nums">X</p>
@@ -59,7 +59,9 @@
                 <div class="flex flex-col gap-6">
                     <div class="flex justify-between">
                         <p>{{ $ingredient->nom }}</p>
-                        <p class="nums">{{ $ingredient->pivot->quantity }} &nbsp; {{ $ingredient->pivot->mesure }} </p>
+                        <p class="stock" data-q="{{ $ingredient->pivot->quantity }}" data-m="{{ $ingredient->pivot->mesure }}">
+                            {{ $ingredient->pivot->quantity }} &nbsp; {{ $ingredient->pivot->mesure }}
+                        </p>
                     </div>
                 </div>
             @endforeach
@@ -103,7 +105,7 @@
             <div class="w-1/2 flex flex-col items-center">
                 <h1 class="text-2xl">
                     <i class="fa-solid fa-comments"></i>
-                    Commentaires (X)
+                    Commentaires ({{ $comments->count() }})
                 </h1>
                 <div class="flex flex-col gap-8 p-6 w-full ">
                     @foreach ($comments as $comment)
@@ -155,7 +157,9 @@
     <script>
         more = document.getElementById('more');
         less = document.getElementById('less');
+        people = document.getElementById('people');
         quantite = document.getElementById('quantite');
+        stock = document.getElementsByClassName('stock');
         i = document.getElementsByClassName('rating');
         note = document.getElementById('note');
         btn_1 = document.getElementById('btn_1');
@@ -169,16 +173,40 @@
         btn_4.addEventListener('click', starsystem);
         btn_5.addEventListener('click', starsystem);
         z = 1;
+        stock1 = [];
+        c_stock = [];
+        m = [];
+        for (s of stock){
+            stock1.push(parseFloat(s.dataset.q));
+            c_stock.push(parseFloat(s.dataset.q));
+            m.push(s.dataset.m);
+        }
+
 
         quantite.innerHTML = z;
         more.addEventListener('click', moreq);
         less.addEventListener('click', lessq);
         function moreq(){
             z = z+1;
+            quantite.innerHTML = z;
+            people.innerHTML = z;
+            for (s=0; s < stock.length; s++){
+                c_stock[s] += stock1[s];
+                stock[s].textContent = c_stock[s] + ' ' + m[s];
+            }
+
         }
 
         function lessq(){
-            z = z-1;
+            if (z > 1){
+                z = z-1;
+                quantite.innerHTML = z;
+                people.innerHTML = z;
+                for (s=0; s < stock.length; s++){
+                    c_stock[s] -= stock1[s];
+                    stock[s].textContent = c_stock[s] + ' ' + m[s];
+                }
+            }
         }
 
         function defaultStars(x){

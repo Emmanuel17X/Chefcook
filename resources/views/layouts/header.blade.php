@@ -3,7 +3,7 @@
     <h1 class="text-bold text-3xl">ChefCook</h1>
     @auth
         <a class="text-xl hover:underline block" href="{{ route('accueil') }}">Accueil</a>
-        <a class="text-xl hover:underline block" href="#">Administration</a>
+        <a class="text-xl hover:underline block" href="{{ route('admin') }}">Administration</a>
         <a class="text-xl hover:underline block" href="#">Recettes</a>
         <a class="text-xl hover:underline block" href="{{ route('profil') }}">Profil</a>
         <form method="post" action="{{ route('logout') }}">

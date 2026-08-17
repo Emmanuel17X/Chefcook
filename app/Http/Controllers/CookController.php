@@ -24,6 +24,10 @@ class CookController extends Controller
         ]);
     }
 
+    public function admin(){
+        return view('administration');
+    }
+
     public function recipe(){
         $ingredients = Ingredient::all();
         return view('profile.more_recipe',[

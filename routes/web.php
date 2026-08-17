@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/recette/{id}/comment', [CommentController::class, 'create']);
     Route::post('/recette/{id}/note', [CookController::class, 'note']);
     Route::post('/logout', [CookController::class, 'logout'])->name('logout');
+    Route::get('/admin', [CookController::class, 'admin'])->name('admin');
 });
 
 

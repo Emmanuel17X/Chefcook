@@ -107,7 +107,7 @@
                                     <p>🍽️ {{ $recette->difficulty }}</p>
                                 </div>
                                 <div class="bg-yellow-200 p-2 rounded-2xl">
-                                    ⭐ {{ $rcp->note }}
+                                    ⭐ {{ $recette->note }}
                                 </div>
                             </div>
                             <a href="/recette/{{ $recette->id_recette }}" class="w-full py-2 px-4 rounded-2xl bg-black text-[#EEE]">Voir la recette</a>
